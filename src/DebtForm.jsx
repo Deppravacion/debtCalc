@@ -1,4 +1,5 @@
 import React from "react";
+import PaymentHistory from "./PaymentHistory";
 
 
 class DebtForm extends React.Component {
@@ -30,9 +31,9 @@ class DebtForm extends React.Component {
   render() {
     return (
       <div>
-        <h2>Debt Free Calculator</h2>
+        <h2>form comp</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="newTodo">What needs to be done?</label>
+          <label htmlFor="newPayment">Enter payment</label>
           <br />
           <input 
           onChange={this.handleChange} 
@@ -40,10 +41,21 @@ class DebtForm extends React.Component {
           autoComplete="off"
           value={this.state.text}
           />   
-          <button>Add #!</button>
+          <button>Pay</button>
           <br />
-        </form>        
-        
+
+          <label htmlFor="totalDebt">Enter total debt</label>
+          <br />
+          <input 
+          onChange={this.handleChange} 
+          type="text"
+          autoComplete="off"
+          value={this.state.text}
+          />
+
+        </form>       
+
+        <PaymentHistory info={this.state}/>
     
 
       </div>

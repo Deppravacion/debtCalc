@@ -7,8 +7,8 @@ class DebtFreeApp extends React.Component {
 
     return ( 
       <div>
-        <h1>test h1</h1>
-        <p>second</p>
+        <h1>test debt free app</h1>
+      
         <DebtForm />
       </div>
     )
