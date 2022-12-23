@@ -41,6 +41,7 @@ class DebtForm extends React.Component {
           autoComplete="off"
           value={this.state.text}
           />   
+          <br />
           <button>Pay</button>
           <br />
 

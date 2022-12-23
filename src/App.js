@@ -1,6 +1,7 @@
 import './App.css';
 import DebtForm from './DebtForm';
 import DebtFreeApp from './DebtFreeApp';
+import FormClass from './FormClass';
 
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
       {/* <DebtForm /> */}
 
       <DebtFreeApp />
+      
+
       </header>
     </div>
   );

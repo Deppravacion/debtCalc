@@ -19,3 +19,18 @@
   color: #61dafb;
 }
 
+.form {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
