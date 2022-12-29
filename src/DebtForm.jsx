@@ -9,6 +9,7 @@ class DebtForm extends React.Component {
       text: '', 
       items: [],
       name: '',
+
      };
   }
 

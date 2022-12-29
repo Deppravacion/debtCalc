@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.history {
+  border: 3px solid grey;
+  border-radius: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.invisible {
+  display: none;
+}
+
+.paymentsContainer {
+  background-color: rgb(42, 42, 42);
+}

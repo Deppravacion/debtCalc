@@ -1,17 +1,21 @@
 import React from "react";
 
 class PaymentHistory extends React.Component {
-  //should state be used here to choose the history
-  //to be displayed or hidden ? 
   
   render() {
-    const {info:{ items, paymentsList, hello: title }} = this.props;
+    const {info:{ completedPayments }} = this.props;
+    
     return (
-      <div>
-        <p>{paymentsList}</p>
-        <h6>{title}</h6>
-        <ul>
-          {items.map(item => (
+      <div className="history" >
+        <p>History of payments</p>
+        <button onClick={()=>{
+          const $paymentsList = document.getElementById("paymentsList");    
+          const classes = $paymentsList.classList;
+          const result = classes.toggle("invisible");    
+        }}>Hide / Show</button>
+ 
+        <ul id="paymentsList" className="paymentsContainer">
+          {completedPayments.map(item => (
             <li key={item.id}>{item.text}</li>
           ))}
         </ul>
@@ -20,13 +24,5 @@ class PaymentHistory extends React.Component {
     )
   }
 }
-
-PaymentHistory.defaultProps = {
-  items: ['item 1'],
-  paymentsList: 'Testing Default ',
-  hello: "hello default",
-}
-
-
 
 export default PaymentHistory;
