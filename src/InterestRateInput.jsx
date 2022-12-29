@@ -22,13 +22,17 @@ class InterestRateInput extends React.Component {
 
   handleSubmit = (e) => { 
     e.preventDefault();
+
     const newItem = {
       // text: this.state.text,
       text: this.state.payment,
       id: Date.now(),     
     }
 
+
+
     this.setState((state) => ({ 
+      //if payment == '' do not add it to completedPayments
       completedPayments: [...state.completedPayments, newItem],
       text: '' ,
       lastItemName: newItem.text,
