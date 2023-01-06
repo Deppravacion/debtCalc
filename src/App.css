@@ -1,8 +1,6 @@
 .App {
-  text-align: center;
-  
+  text-align: center;  
 }
-
 
 .App-header {
   background-color: #282c34;
@@ -13,7 +11,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-
 }
 
 .App-link {
@@ -21,11 +18,11 @@
 }
 
 .form {
-  width: 420px;
+  /* width: 420px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 input {

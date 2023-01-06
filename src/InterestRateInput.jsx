@@ -12,6 +12,7 @@ class InterestRateInput extends React.Component {
       loanAmount: "",
       payment: "",
       balanceAmount: "",
+      remainingPayments: ""
     };
   }
 
@@ -91,9 +92,11 @@ class InterestRateInput extends React.Component {
           </div>
           <div className="calculations-wrapper">
             <div id="numberOfPaymentsRequired" className="dark-bg">
+              { this.state.remainingPayments }
                 Number of minimum payments required to pay off debt
             </div>
             <div id="remainingBalance" className="dark-bg">
+              { this.state.balanceAmount }
               Your remaining balance.
             </div>
             

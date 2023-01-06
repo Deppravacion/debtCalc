@@ -18,9 +18,7 @@ code {
     monospace;
 }
 
-form {
-  margin-bottom: 50px;
-}
+
 button {
   padding: 10px 16px;
   border-radius: 10px;
@@ -35,6 +33,7 @@ button {
 .main-wrapper {
   border: 4px solid #1f232e;
   border-radius: 6px;
+  height: 420px;
   max-width: 500px;
 }
 
