@@ -14,7 +14,7 @@ class PaymentHistory extends React.Component {
           const result = classes.toggle("invisible");    
         }}>Hide / Show</button>
  
-        <ul id="paymentsList" className="paymentsContainer">
+        <ul id="paymentsList" className="dark-bg">
           {completedPayments
             .map(item => (
               <li key={item.id}>{item.text}</li>
