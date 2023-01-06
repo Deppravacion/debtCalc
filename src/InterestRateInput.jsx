@@ -6,9 +6,9 @@ class InterestRateInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      text:  '', // real time state from input
-      completedPayments: [], // newItem => text:'' id:''
-      lastItemName: '', // the last text value for newItem created 
+      // text:  '', // real time state from input
+      // lastItemName: '', // the last text value for newItem created 
+      completedPayments: [], 
       interestRate: '',
       loanAmount: '',
       payment: '',
