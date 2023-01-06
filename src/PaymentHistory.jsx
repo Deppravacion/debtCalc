@@ -6,7 +6,7 @@ class PaymentHistory extends React.Component {
     const {info:{ completedPayments }} = this.props;
     
     return (
-      <div className="history" >
+      <div className="history-wrapper" >
         <p>History of payments</p>
         <button onClick={()=>{
           const $paymentsList = document.getElementById("paymentsList");    

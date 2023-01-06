@@ -2,6 +2,7 @@ import React from "react";
 import PaymentHistory from "./PaymentHistory";
 
 
+
 class InterestRateInput extends React.Component {
   constructor() {
     super();
@@ -43,8 +44,8 @@ class InterestRateInput extends React.Component {
   
     this.setState((state) => ({ 
       completedPayments: newItem.text != '' ?[...state.completedPayments, newItem] : [...state.completedPayments],
-      text: '' ,
-      lastItemName: newItem.text,
+      // text: '' ,
+      // lastItemName: newItem.text,
       payment: '',
       
  
@@ -56,43 +57,46 @@ class InterestRateInput extends React.Component {
   render() { 
 
     return (
-      <div>
+      <div className="">
         <h2>Debt Calculator</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="interestRate">Interest Rate</label>
-          <br />
-          <input 
-          value={this.state.interestRate}
-          onChange={this.handleInterestRateChange} 
-          type="text"
-          autoComplete="off"
-          name="interestRate"
-          />   
-          <br />
+        <div className="main-wrapper">
 
-          <label>Loan Amount</label><br />
-          <input 
-          value={ this.state.loanAmount }
-          onChange={ this.handleLoanAmountChange }           
-          type="text"
-          autoComplete="off"
-          name="loanAmount"
-          />   
-          <br />
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="interestRate">Interest Rate</label>
+            <br />
+            <input 
+            value={this.state.interestRate}
+            onChange={this.handleInterestRateChange} 
+            type="text"
+            autoComplete="off"
+            name="interestRate"
+            />   
+            <br />
 
-          <label>Payment</label><br />
-          <input 
-          value={this.state.payment}         
-          onChange={this.handlePaymentChange}           
-          type="text"
-          autoComplete="off"
-          name="payment"
-      
-          />   
-          <br />
-          <button>enter</button>
-          <br />
-        </form>   
+            <label>Loan Amount</label><br />
+            <input 
+            value={ this.state.loanAmount }
+            onChange={ this.handleLoanAmountChange }           
+            type="text"
+            autoComplete="off"
+            name="loanAmount"
+            />   
+            <br />
+
+            <label>Payment</label><br />
+            <input 
+            value={this.state.payment}         
+            onChange={this.handlePaymentChange}           
+            type="text"
+            autoComplete="off"
+            name="payment"
+            
+            />   
+            <br />
+            <button>enter</button>
+            <br />
+          </form>   
+        </div>
 
         <PaymentHistory info={this.state} />      
       </div>
