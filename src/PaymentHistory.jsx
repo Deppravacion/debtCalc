@@ -15,7 +15,7 @@ class PaymentHistory extends React.Component {
         }}>Hide / Show</button>
  
         <ul id="paymentsList" className="paymentsContainer">
-          {completedPayments.filter((elm => elm.text != ''))
+          {completedPayments
             .map(item => (
               <li key={item.id}>{item.text}</li>
             ) )

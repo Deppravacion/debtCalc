@@ -42,7 +42,7 @@ class InterestRateInput extends React.Component {
     }
   
     this.setState((state) => ({ 
-      completedPayments: [...state.completedPayments, newItem],
+      completedPayments: newItem.text != '' ?[...state.completedPayments, newItem] : [...state.completedPayments],
       text: '' ,
       lastItemName: newItem.text,
       payment: '',
