@@ -18,25 +18,35 @@ class InterestRateInput extends React.Component {
   }
 
   handleChange = ({ target: { value, name}}) => 
-  this.setState({ [name]: value, text: value, });
+    this.setState({ [name]: value, text: value, });
+
+  handleInterestRateChange = (event) => 
+    this.setState({ interestRate: event.target.value })
+
+  handleLoanAmountChange = (event) => 
+    this.setState({ loanAmount: event.target.value })
+
+  handlePaymentChange = (event) => 
+    this.setState({ payment: event.target.value })
+
+  
+
+
 
   handleSubmit = (e) => { 
     e.preventDefault();
 
     const newItem = {
-      // text: this.state.text,
       text: this.state.payment,
-      id: Date.now(),     
+      id: Date.now(),
     }
-
-
-
+  
     this.setState((state) => ({ 
-      //if payment == '' do not add it to completedPayments
       completedPayments: [...state.completedPayments, newItem],
       text: '' ,
       lastItemName: newItem.text,
       payment: '',
+      
  
     }));
   }
@@ -52,7 +62,8 @@ class InterestRateInput extends React.Component {
           <label htmlFor="interestRate">Interest Rate</label>
           <br />
           <input 
-          onChange={this.handleChange} 
+          value={this.state.interestRate}
+          onChange={this.handleInterestRateChange} 
           type="text"
           autoComplete="off"
           name="interestRate"
@@ -61,7 +72,8 @@ class InterestRateInput extends React.Component {
 
           <label>Loan Amount</label><br />
           <input 
-          onChange={this.handleChange} 
+          value={ this.state.loanAmount }
+          onChange={ this.handleLoanAmountChange }           
           type="text"
           autoComplete="off"
           name="loanAmount"
@@ -70,10 +82,10 @@ class InterestRateInput extends React.Component {
 
           <label>Payment</label><br />
           <input 
-          onChange={this.handleChange}           
+          value={this.state.payment}         
+          onChange={this.handlePaymentChange}           
           type="text"
           autoComplete="off"
-          // value={this.state.text}         
           name="payment"
       
           />   

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { NewForm } from './NewForm';
 class PaymentHistory extends React.Component {
   
   render() {
@@ -19,6 +19,7 @@ class PaymentHistory extends React.Component {
             <li key={item.id}>{item.text}</li>
           ))}
         </ul>
+  
       </div>
 
     )
