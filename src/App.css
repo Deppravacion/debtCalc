@@ -11,13 +11,16 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  border: 4px solid #1f232e;
+  border-radius: 6px;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-.form {
+form {
   /* width: 420px;
   display: flex;
   flex-direction: column;
