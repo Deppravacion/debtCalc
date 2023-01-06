@@ -25,6 +25,9 @@ button {
   border: none;
   box-shadow: 0px 0px 10px 10px darkslategrey;
 }
+li {
+  list-style: none;
+}
 
 .dark-bg {
  background-color: rgb(42, 42, 42);
@@ -33,8 +36,8 @@ button {
 .main-wrapper {
   border: 4px solid #1f232e;
   border-radius: 6px;
-  height: 420px;
-  max-width: 500px;
+  /* height: 420px; */
+  /* max-width: 500px; */
 }
 
 .form-wrapper, .calculations-wrapper {
