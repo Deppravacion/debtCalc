@@ -20,6 +20,7 @@
   color: #61dafb;
 }
 
+
 form {
   /* width: 420px;
   display: flex;
@@ -28,12 +29,5 @@ form {
   align-items: center; */
 }
 
-input {
-  padding: 14px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
