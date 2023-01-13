@@ -12,7 +12,8 @@ class InterestRateInput extends React.Component {
       loanAmount: "",
       payment: "",
       balanceAmount: "",
-      remainingPayments: ""
+      remainingPayments: "",
+      value: "",
     };
   }
 
@@ -67,8 +68,10 @@ class InterestRateInput extends React.Component {
               <label htmlFor="interestRate">Interest Rate</label>
               <br />
               <input
-                value={this.state.interestRate}
-                onChange={this.handleInterestRateChange}
+                value={this.state.value}
+                // value={this.state.interestRate}
+                onChange={this.handleChange}
+                // onChange={this.handleInterestRateChange}
                 type="text"
                 autoComplete="off"
                 name="interestRate"
@@ -78,8 +81,10 @@ class InterestRateInput extends React.Component {
               <label>Loan Amount</label>
               <br />
               <input
-                value={this.state.loanAmount}
-                onChange={this.handleLoanAmountChange}
+                value={this.state.value}
+                // value={this.state.loanAmount}
+                onChange={this.handleChange}
+                // onChange={this.handleLoanAmountChange}
                 type="text"
                 autoComplete="off"
                 name="loanAmount"
@@ -89,8 +94,10 @@ class InterestRateInput extends React.Component {
               <label>Payment</label>
               <br />
               <input
-                value={this.state.payment}
-                onChange={this.handlePaymentChange}
+                value={this.state.value}
+                // value={this.state.payment}
+                onChange={this.handleChange}
+                // onChange={this.handlePaymentChange}
                 type="text"
                 autoComplete="off"
                 name="payment"
