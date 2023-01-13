@@ -16,8 +16,18 @@ class InterestRateInput extends React.Component {
     };
   }
 
-  handleChange = ({ target: { value, name } }) =>
-    this.setState({ [name]: value, text: value });
+  // handleChange = ({ target: { value, name } }) =>
+  //   this.setState({ [name]: value, text: value });
+
+  handleChange = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    const name = e.taget.name;
+    this.setState({[name]: value })
+  }
+
+
+
 
   handleInterestRateChange = (event) =>
     this.setState({ interestRate: event.target.value });
