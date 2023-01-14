@@ -13,7 +13,6 @@ class InterestRateInput extends React.Component {
       payment: "",
       balanceAmount: "",
       remainingPayments: "",
-      value: "",
     };
   }
 
@@ -23,21 +22,10 @@ class InterestRateInput extends React.Component {
   handleChange = (e) => {
     e.preventDefault();
     const value = e.target.value;
-    const name = e.taget.name;
+    const name = e.target.name;
+    console.log(name, value);
     this.setState({[name]: value })
   }
-
-
-
-
-  handleInterestRateChange = (event) =>
-    this.setState({ interestRate: event.target.value });
-
-  handleLoanAmountChange = (event) =>
-    this.setState({ loanAmount: event.target.value });
-
-  handlePaymentChange = (event) =>
-    this.setState({ payment: event.target.value });
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +34,8 @@ class InterestRateInput extends React.Component {
       text: this.state.payment,
       id: Date.now(),
     };
+    
+   
 
     this.setState((state) => ({
       completedPayments:
@@ -58,7 +48,15 @@ class InterestRateInput extends React.Component {
     }));
   };
 
+  calculateBalance = () => {
+    //loanAmount - payment
+    const { loanAmount, payment, balanceAmount } = this.state
+    const sayHello = 'say hi'
+    console.log(sayHello);
+  }
+
   render() {
+    const { interestRate, loanAmount, payment, remainingPayments, balanceAmount } = this.state;
     return (
       <div className="">
         <h2>Debt Calculator</h2>
@@ -68,8 +66,7 @@ class InterestRateInput extends React.Component {
               <label htmlFor="interestRate">Interest Rate</label>
               <br />
               <input
-                value={this.state.value}
-                // value={this.state.interestRate}
+                value={interestRate}
                 onChange={this.handleChange}
                 // onChange={this.handleInterestRateChange}
                 type="text"
@@ -81,8 +78,7 @@ class InterestRateInput extends React.Component {
               <label>Loan Amount</label>
               <br />
               <input
-                value={this.state.value}
-                // value={this.state.loanAmount}
+                value={loanAmount}
                 onChange={this.handleChange}
                 // onChange={this.handleLoanAmountChange}
                 type="text"
@@ -94,8 +90,7 @@ class InterestRateInput extends React.Component {
               <label>Payment</label>
               <br />
               <input
-                value={this.state.value}
-                // value={this.state.payment}
+                value={payment}
                 onChange={this.handleChange}
                 // onChange={this.handlePaymentChange}
                 type="text"
@@ -103,17 +98,17 @@ class InterestRateInput extends React.Component {
                 name="payment"
               />
               <br />
-              <button>enter</button>
+              <button >enter</button>
               <br />
             </form>
           </div>
           <div className="calculations-wrapper">
             <div id="numberOfPaymentsRequired" className="dark-bg">
-              { this.state.remainingPayments }
-                Number of minimum payments required to pay off debt
+              { remainingPayments }
+               minimum payments required to pay off debt
             </div>
             <div id="remainingBalance" className="dark-bg">
-              { this.state.balanceAmount }
+              { balanceAmount, loanAmount }
               Your remaining balance.
             </div>
             

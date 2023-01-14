@@ -17,7 +17,6 @@ class FormClass extends Component{
     this.setState({[e.target.name]: e.target.value});
   }
 
-
   onSubmit =(e) => {
     e.preventDefault();
     console.log(`onsubmit fire`);
@@ -28,7 +27,6 @@ class FormClass extends Component{
       interestRate: "",
     });
   }
-
 
   render() {
     const { username: userName, password, totalDebt, interestRate} = this.state;
@@ -42,26 +40,31 @@ class FormClass extends Component{
             onChange={this.onChange} 
             name="username"      
             />
+            <br />
             <label>password</label>
           <input type="text"
             value={ password}
             onChange={this.onChange}     
             name="password"  
             />
+            <br />
             <label>totalDebt</label>
           <input type="text"
             value={ totalDebt}
             onChange={this.onChange}     
             name="totalDebt"  
             />
-            <label>interestRate</label>
+            <br />
+            <label>int. Rate</label>
           <input type="text"
             value={ interestRate}
             onChange={this.onChange}     
             name="interestRate"  
           />
           
+            <br />
           <button type="submit">Submit it</button> 
+            <br />
 
         </form>
       </div>
