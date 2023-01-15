@@ -25,13 +25,10 @@ class InterestRateInput extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const newItem = {
       text: this.state.payment,
       id: Date.now(),
-    };
-    
-   
+    };   
 
     this.setState((state) => ({
       completedPayments:
@@ -64,7 +61,6 @@ class InterestRateInput extends React.Component {
               <input
                 value={interestRate}
                 onChange={this.handleChange}
-                // onChange={this.handleInterestRateChange}
                 type="text"
                 autoComplete="off"
                 name="interestRate"
@@ -76,7 +72,6 @@ class InterestRateInput extends React.Component {
               <input
                 value={loanAmount}
                 onChange={this.handleChange}
-                // onChange={this.handleLoanAmountChange}
                 type="text"
                 autoComplete="off"
                 name="loanAmount"
@@ -88,7 +83,6 @@ class InterestRateInput extends React.Component {
               <input
                 value={payment}
                 onChange={this.handleChange}
-                // onChange={this.handlePaymentChange}
                 type="text"
                 autoComplete="off"
                 name="payment"
