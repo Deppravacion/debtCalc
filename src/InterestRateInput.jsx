@@ -17,6 +17,14 @@ class InterestRateInput extends React.Component {
     this.setState({[name]: value })
   }
 
+  calculations = () => {
+    const { loanAmount, interestRate, payment } = this.state
+    const interestFee = (+interestRate / 12) * +loanAmount
+    const principalFee = +loanAmount * 0.01
+    const minimumPayment = +interestFee + +principalFee
+    return minimumPayment
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.setBalance()
@@ -34,7 +42,7 @@ class InterestRateInput extends React.Component {
         payment: "",
       }));
     };
-     
+    
   
 
   render() {
