@@ -25,6 +25,9 @@ class InterestRateInput extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    this.calculations()
+
     const newItem = {
       text: this.state.payment,
       id: Date.now(),
@@ -38,14 +41,26 @@ class InterestRateInput extends React.Component {
       // text: '' ,
       // lastItemName: newItem.text,
       payment: "",
+      balanceAmount: 
+        this.state.completedPayments.length < 1 
+          ? this.state.loanAmount - this.state.payment
+          // ? this.state.loanAmount - this.state.completedPayments
+          : 'not ok'
     }));
   };
 
-  calculateBalance = () => {
-    //loanAmount - payment
-    const { loanAmount, payment, balanceAmount } = this.state
-    const sayHello = 'say hi'
-    console.log(sayHello);
+  calculations = () => {
+    //things to do : min payment, balanceAmount, remaining payments
+    //note: payment is used to create newItem. only completedPayments has any checks on payment to verify. 
+    //
+    const { completedPayments, interestRate, loanAmount, payment, balanceAmount, } = this.state
+    const firstPaymentResult = +loanAmount - +completedPayments[0]
+   
+    return firstPaymentResult
+
+    // const totalInterest = interestRate * balanceAmount
+    // const minPayment = //total interest/12 + balanceAmount*0.01
+
   }
 
   render() {
@@ -98,7 +113,7 @@ class InterestRateInput extends React.Component {
                minimum payments required to pay off debt
             </div>
             <div id="remainingBalance" className="dark-bg">
-              { balanceAmount, loanAmount }
+              { balanceAmount }
               Your remaining balance.
             </div>            
           </div>

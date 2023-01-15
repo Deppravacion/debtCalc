@@ -1,7 +1,5 @@
 import React from "react";
-import { NewForm } from './NewForm';
-class PaymentHistory extends React.Component {
-  
+class PaymentHistory extends React.Component {  
   render() {
     const {info:{ completedPayments }} = this.props;
     
