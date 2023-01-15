@@ -2,21 +2,15 @@ import React from "react";
 import PaymentHistory from "./PaymentHistory";
 
 class InterestRateInput extends React.Component {
-  // constructor() {
-    // super();
-    // this.state = {
-    state = {
-      // text:  '', // real time state from input
-      // lastItemName: '', // the last text value for newItem created
-      completedPayments: [],
-      interestRate: "",
-      loanAmount: "",
-      payment: "",
-      balanceAmount: "",
-      remainingPayments: "",
-    };
-  // }
-
+  state = {
+    completedPayments: [],
+    interestRate: "",
+    loanAmount: "",
+    payment: "",
+    balance: "",
+  };
+ 
+  
   handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;    
@@ -24,10 +18,9 @@ class InterestRateInput extends React.Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
-
-    this.calculations()
-
+    e.preventDefault()
+    this.setBalance()
+    
     const newItem = {
       text: this.state.payment,
       id: Date.now(),
@@ -36,35 +29,35 @@ class InterestRateInput extends React.Component {
     this.setState((state) => ({
       completedPayments:
         newItem.text != ""
-          ? [...state.completedPayments, newItem]
-          : [...state.completedPayments],
-      // text: '' ,
-      // lastItemName: newItem.text,
-      payment: "",
-      balanceAmount: 
-        this.state.completedPayments.length < 1 
-          ? this.state.loanAmount - this.state.payment
-          // ? this.state.loanAmount - this.state.completedPayments
-          : 'not ok'
-    }));
-  };
+        ? [...state.completedPayments, newItem]
+        : [...state.completedPayments],
+        payment: "",
+      }));
+    };
+    
+    setBalance = () => {
+      const {completedPayments, loanAmount, payment} = this.state
+      const payArray = completedPayments.map(elm => elm.text) // using maps cb was functional in bringing out the text keyvalue from array
+      const initPayment = loanAmount - payment
+      const acceptedPayment = payArray;
+      console.log(acceptedPayment + '  logged');
+    
+      this.setState({balance: acceptedPayment})
+      // this.setState({balance: initPayment})
+    }
 
-  calculations = () => {
-    //things to do : min payment, balanceAmount, remaining payments
-    //note: payment is used to create newItem. only completedPayments has any checks on payment to verify. 
-    //
-    const { completedPayments, interestRate, loanAmount, payment, balanceAmount, } = this.state
-    const firstPaymentResult = +loanAmount - +completedPayments[0]
-   
-    return firstPaymentResult
-
+    calculations = () => {
+      const { completedPayments, interestRate, loanAmount, payment, } = this.state
+      const balanceAmount = loanAmount
+      console.log(balanceAmount);   
+    return balanceAmount
     // const totalInterest = interestRate * balanceAmount
     // const minPayment = //total interest/12 + balanceAmount*0.01
-
   }
 
+
   render() {
-    const { interestRate, loanAmount, payment, remainingPayments, balanceAmount } = this.state;
+    const { interestRate, loanAmount, payment, remainingPayments } = this.state;
     return (
       <div className="">
         <h2>Debt Calculator</h2>
@@ -113,7 +106,7 @@ class InterestRateInput extends React.Component {
                minimum payments required to pay off debt
             </div>
             <div id="remainingBalance" className="dark-bg">
-              { balanceAmount }
+              {/* { balanceAmount } */}
               Your remaining balance.
             </div>            
           </div>
