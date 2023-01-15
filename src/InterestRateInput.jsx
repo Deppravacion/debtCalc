@@ -34,27 +34,8 @@ class InterestRateInput extends React.Component {
         payment: "",
       }));
     };
-    
-    setBalance = () => {
-      const {completedPayments, loanAmount, payment} = this.state
-      const payArray = completedPayments.map(elm => elm.text) // using maps cb was functional in bringing out the text keyvalue from array
-      const initPayment = loanAmount - payment
-      const acceptedPayment = payArray;
-      console.log(acceptedPayment + '  logged');
-    
-      this.setState({balance: acceptedPayment})
-      // this.setState({balance: initPayment})
-    }
-
-    calculations = () => {
-      const { completedPayments, interestRate, loanAmount, payment, } = this.state
-      const balanceAmount = loanAmount
-      console.log(balanceAmount);   
-    return balanceAmount
-    // const totalInterest = interestRate * balanceAmount
-    // const minPayment = //total interest/12 + balanceAmount*0.01
-  }
-
+     
+  
 
   render() {
     const { interestRate, loanAmount, payment, remainingPayments } = this.state;
@@ -106,7 +87,7 @@ class InterestRateInput extends React.Component {
                minimum payments required to pay off debt
             </div>
             <div id="remainingBalance" className="dark-bg">
-              {/* { balanceAmount } */}
+         
               Your remaining balance.
             </div>            
           </div>
