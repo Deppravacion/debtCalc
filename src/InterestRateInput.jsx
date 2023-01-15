@@ -2,9 +2,10 @@ import React from "react";
 import PaymentHistory from "./PaymentHistory";
 
 class InterestRateInput extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+  // constructor() {
+    // super();
+    // this.state = {
+    state = {
       // text:  '', // real time state from input
       // lastItemName: '', // the last text value for newItem created
       completedPayments: [],
@@ -14,16 +15,11 @@ class InterestRateInput extends React.Component {
       balanceAmount: "",
       remainingPayments: "",
     };
-  }
-
-  // handleChange = ({ target: { value, name } }) =>
-  //   this.setState({ [name]: value, text: value });
+  // }
 
   handleChange = (e) => {
-    e.preventDefault();
     const value = e.target.value;
-    const name = e.target.name;
-    console.log(name, value);
+    const name = e.target.name;    
     this.setState({[name]: value })
   }
 
@@ -110,8 +106,7 @@ class InterestRateInput extends React.Component {
             <div id="remainingBalance" className="dark-bg">
               { balanceAmount, loanAmount }
               Your remaining balance.
-            </div>
-            
+            </div>            
           </div>
         </div>
 
