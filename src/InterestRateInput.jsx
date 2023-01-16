@@ -103,17 +103,7 @@ class InterestRateInput extends React.Component {
               <br />
             </form>
           </div>
-          <div className="calculations-wrapper">
-            <div id="numberOfPaymentsRequired" className="dark-bg">
-              {/* { remainingPayments } */}
-              {minimumPayment}
-               minimum payments required to pay off debt
-            </div>
-            <div id="remainingBalance" className="dark-bg">
-         
-              Your remaining balance.
-            </div>            
-          </div>
+          
         </div>
 
         <PaymentHistory info={this.state} />
@@ -122,3 +112,14 @@ class InterestRateInput extends React.Component {
   }
 }
 export default InterestRateInput;
+// {/* <div className="calculations-wrapper">
+//             <div id="numberOfPaymentsRequired" className="dark-bg">
+//               {/* { remainingPayments } */}
+//               {minimumPayment}
+//                minimum payments required to pay off debt
+//             </div>
+//             <div id="remainingBalance" className="dark-bg">
+         
+//               Your remaining balance.
+//             </div>            
+//           </div> */}
