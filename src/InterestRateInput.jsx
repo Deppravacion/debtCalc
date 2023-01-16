@@ -7,46 +7,60 @@ class InterestRateInput extends React.Component {
     interestRate: "",
     loanAmount: "",
     payment: "",
-    balance: "",
+    remainingPayments: "",
+
   };
- 
+
+
   
-  handleChange = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;    
+  handleChange = ({target: {name, value}}) => {    
     this.setState({[name]: value })
   }
 
   calculations = () => {
     const { loanAmount, interestRate, payment } = this.state
-    const interestFee = (+interestRate / 12) * +loanAmount
-    const principalFee = +loanAmount * 0.01
-    const minimumPayment = +interestFee + +principalFee
-    return minimumPayment
+    const interestFee = (interestRate / 12) * loanAmount
+    const revisedPayment = +payment - +interestFee
+    this.setState({loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2))})
+    return revisedPayment
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setBalance()
-    
-    const newItem = {
-      text: this.state.payment,
-      id: Date.now(),
-    };   
+    const {loanAmount, payment, remainingPayments} = this.state
+    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
 
-    this.setState((state) => ({
-      completedPayments:
-        newItem.text != ""
-        ? [...state.completedPayments, newItem]
-        : [...state.completedPayments],
-        payment: "",
-      }));
-    };
+
+    if (payment < minimumPayment) {
+      alert(`you pay more, you pay now! $${minimumPayment} is the minimum required`)
+    } else {
+      this.calculations()
+      const newItem = {
+        text: this.state.payment,
+        id: Date.now(),
+      };   
+      this.setState((state) => ({
+        completedPayments:
+          newItem.text != ""
+          ? [...state.completedPayments, newItem]
+          : [...state.completedPayments],
+          payment: "",
+        }));
+      };      
+    }
     
+    
+
+
+    
+    
+
   
 
   render() {
     const { interestRate, loanAmount, payment, remainingPayments } = this.state;
+    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+
     return (
       <div className="">
         <h2>Debt Calculator</h2>
@@ -91,7 +105,8 @@ class InterestRateInput extends React.Component {
           </div>
           <div className="calculations-wrapper">
             <div id="numberOfPaymentsRequired" className="dark-bg">
-              { remainingPayments }
+              {/* { remainingPayments } */}
+              {minimumPayment}
                minimum payments required to pay off debt
             </div>
             <div id="remainingBalance" className="dark-bg">
