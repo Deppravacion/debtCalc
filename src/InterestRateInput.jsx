@@ -18,10 +18,15 @@ class InterestRateInput extends React.Component {
   }
 
   calculations = () => {
-    const { loanAmount, interestRate, payment } = this.state
+    const { loanAmount, interestRate, payment, remainingPayments } = this.state
+    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+
     const interestFee = (interestRate / 12) * loanAmount
     const revisedPayment = +payment - +interestFee
-    this.setState({loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2))})
+    this.setState({
+      loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2)), 
+      remainingPayments: (loanAmount / (minimumPayment - interestFee)) })
+    // this.setState({loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2))})
     return revisedPayment
   }
 
@@ -80,6 +85,7 @@ class InterestRateInput extends React.Component {
 
               <label>Loan Amount</label>
               <br />
+              <h6>{remainingPayments} payments to pay off</h6>
               <input
                 value={loanAmount}
                 onChange={this.handleChange}
@@ -90,6 +96,8 @@ class InterestRateInput extends React.Component {
               <br />
 
               <label>Payment</label>
+              <br />
+
               <br />
               <input
                 value={payment}
@@ -112,14 +120,3 @@ class InterestRateInput extends React.Component {
   }
 }
 export default InterestRateInput;
-// {/* <div className="calculations-wrapper">
-//             <div id="numberOfPaymentsRequired" className="dark-bg">
-//               {/* { remainingPayments } */}
-//               {minimumPayment}
-//                minimum payments required to pay off debt
-//             </div>
-//             <div id="remainingBalance" className="dark-bg">
-         
-//               Your remaining balance.
-//             </div>            
-//           </div> */}
