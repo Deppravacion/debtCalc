@@ -8,7 +8,6 @@ class InterestRateInput extends React.Component {
     loanAmount: "",
     payment: "",
     remainingPayments: "",
-
   };
 
 
@@ -17,43 +16,65 @@ class InterestRateInput extends React.Component {
     this.setState({[name]: value })
   }
 
+  // calculations = () => {
+  //   const { loanAmount, interestRate, payment, remainingPayments } = this.state
+  //   const interestFee = (interestRate / 12) * loanAmount
+    
+  //   // if (loanAmount <= 100) {
+  //   //   return minimumPayment = parseFloat((loanAmount + interestFee).toFixed(2))
+  //   // }
+  //   const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+  //   const revisedPayment = +payment - +interestFee
+    
+  //   this.setState({
+  //     loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2)), 
+  //     remainingPayments: (loanAmount / (minimumPayment - interestFee)).toFixed(2) 
+  //   })
+  //   return revisedPayment
+  // }
+
   calculations = () => {
-    const { loanAmount, interestRate, payment, remainingPayments } = this.state
+    const { loanAmount, interestRate, payment, remainingPayments, minPay } = this.state
     const interestFee = (interestRate / 12) * loanAmount
-    
-    // if (loanAmount <= 100) {
-    //   return minimumPayment = parseFloat((loanAmount + interestFee).toFixed(2))
-    // }
-    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
-    const revisedPayment = +payment - +interestFee
-    
-    this.setState({
-      loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2)), 
-      remainingPayments: (loanAmount / (minimumPayment - interestFee)) 
-    })
-    return revisedPayment
+  
+
+    if (loanAmount <= 100) {
+      console.log(`line 42 active`)
+      const minimumPayment = parseFloat((loanAmount + interestFee).toFixed(2))
+      this.finalPayment()
+    } else {
+
+      const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+      const revisedPayment = +payment - +interestFee
+      
+      this.setState({
+        loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2)), 
+        remainingPayments: (loanAmount / (minimumPayment - interestFee)).toFixed(2) 
+      })
+      return revisedPayment
+    }
   }
 
   finalPayment = () => {
     const { loanAmount, interestRate, payment } = this.state
-    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+    const interestFee = (interestRate / 12) * loanAmount
+    const finalPaymentAmount = parseFloat((loanAmount + +interestFee).toFixed(2))
+    console.log(`line 60 ${finalPaymentAmount}`)
+    this.setState({
+      loanAmount: parseFloat((loanAmount - +payment).toFixed(2)), 
+      remainingPayments: 0
+    })
+    return finalPaymentAmount
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     const {loanAmount, payment, interestFee, remainingPayments} = this.state
     const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+    
+    
 
-
-
-    if(loanAmount <= 100) {
-      return minimumPayment = loanAmount + interestFee
-    }
- 
-
-
-
-    if (payment < minimumPayment) {
+    if (payment < minimumPayment && loanAmount > 100) {
       alert(`you pay more, you pay now! $${minimumPayment} is the minimum required`)
     } else {
       this.calculations()
@@ -114,7 +135,7 @@ class InterestRateInput extends React.Component {
 
               <label>Payment</label>
               <br />
-
+              <h6>${minimumPayment} is your minimum due</h6>
               <br />
               <input
                 value={payment}
