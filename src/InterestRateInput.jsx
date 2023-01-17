@@ -62,7 +62,7 @@ class InterestRateInput extends React.Component {
     const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
 
     return (
-      <div className="">
+      <div className="hero">
         <h2>Debt Calculator</h2>
         <div className="main-wrapper">
           <div className="form-wrapper">
