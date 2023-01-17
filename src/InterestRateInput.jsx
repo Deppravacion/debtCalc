@@ -19,21 +19,38 @@ class InterestRateInput extends React.Component {
 
   calculations = () => {
     const { loanAmount, interestRate, payment, remainingPayments } = this.state
-    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
-
     const interestFee = (interestRate / 12) * loanAmount
+    
+    // if (loanAmount <= 100) {
+    //   return minimumPayment = parseFloat((loanAmount + interestFee).toFixed(2))
+    // }
+    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
     const revisedPayment = +payment - +interestFee
+    
     this.setState({
       loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2)), 
-      remainingPayments: (loanAmount / (minimumPayment - interestFee)) })
-    // this.setState({loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2))})
+      remainingPayments: (loanAmount / (minimumPayment - interestFee)) 
+    })
     return revisedPayment
+  }
+
+  finalPayment = () => {
+    const { loanAmount, interestRate, payment } = this.state
+    const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const {loanAmount, payment, remainingPayments} = this.state
+    const {loanAmount, payment, interestFee, remainingPayments} = this.state
     const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
+
+
+
+    if(loanAmount <= 100) {
+      return minimumPayment = loanAmount + interestFee
+    }
+ 
+
 
 
     if (payment < minimumPayment) {
