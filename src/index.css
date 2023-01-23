@@ -31,6 +31,7 @@ button {
 
 li {
   list-style: none;
+  background-color: #115e11;
 }
 
 form {
@@ -62,14 +63,14 @@ input {
 }
 
 .form-wrapper, .calculations-wrapper {
-  border-top: 6px solid #40403f;
+  border-top: 6px solid #f1f19c;
   margin: 8px;
   border-radius: 10px;
 }
 
 
 .history-wrapper {
-  border: 2px solid #40403f;
+  border: 2px solid #f1f19c;
   border-top: none;
   border-bottom: none;
   border-radius: 6px;
