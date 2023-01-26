@@ -15,12 +15,11 @@ class InterestRateInput extends React.Component {
   }
 
   calculations = () => {
-    const { loanAmount, interestRate, payment, remainingPayments, minPay } = this.state
+    const { loanAmount, interestRate , payment, remainingPayments, minPay } = this.state
     const interestFee = (interestRate / 12) * loanAmount
-  
+ 
 
     if (+loanAmount <= +100) {
-      console.log(`line 42 active`)
       const minimumPayment = parseFloat((+loanAmount + +interestFee).toFixed(2))
       this.finalPayment()
     } else {
@@ -74,6 +73,13 @@ class InterestRateInput extends React.Component {
 
   render() {
     const { interestRate, loanAmount, payment, remainingPayments } = this.state;
+
+    const fields = [
+      { label: "Interest Rate", value: interestRate, name: 'interestRate' }, 
+      { label: "Loan Amount", value: loanAmount, name: 'loanAmount', subheader: `${remainingPayments} payments to pay off` }, 
+      { label: "Payment", value: payment, name: 'payment', subheader: (+loanAmount > 100) ? (+loanAmount * .01 + (+interestRate * +loanAmount / 12)).toFixed(2) : (+loanAmount + (+interestRate * +loanAmount / 12)).toFixed(2)} , 
+      
+    ]
    
     return (
       <div className="hero">
@@ -81,7 +87,32 @@ class InterestRateInput extends React.Component {
         <div className="main-wrapper">
           <div className="form-wrapper">
             <form onSubmit={this.handleSubmit}>
-              <label htmlFor="interestRate">Interest Rate</label>
+              {fields.map(item => {
+                const { label, value, name, subheader} = item
+                return (
+                  <>
+                    <label htmlFor={name}>{label}</label>
+                    <br />
+                    {subheader && (
+                      <h6>{subheader}</h6>
+                    )}
+                    <input
+                      id={name}
+                      value={value}
+                      onChange={this.handleChange}
+                      type="text"
+                      autoComplete="off"
+                      name={name}
+                      />
+                    <br />
+                  </>
+                )
+              })}
+
+
+
+
+              {/* <label htmlFor="interestRate">Interest Rate</label>
               <br />
               <input
                 value={interestRate}
@@ -90,9 +121,9 @@ class InterestRateInput extends React.Component {
                 autoComplete="off"
                 name="interestRate"
               />
-              <br />
+              <br /> */}
 
-              <label>Loan Amount</label>
+              {/* <label>Loan Amount</label>
               <br />
               <h6>{remainingPayments} payments to pay off</h6>
               <input
@@ -102,9 +133,9 @@ class InterestRateInput extends React.Component {
                 autoComplete="off"
                 name="loanAmount"
               />
-              <br />
+              <br /> */}
 
-              <label>Payment</label>
+              {/* <label>Payment</label>
               <br />
               <h6>${
               (loanAmount > 100) 
@@ -119,7 +150,7 @@ class InterestRateInput extends React.Component {
                 autoComplete="off"
                 name="payment"
               />
-              <br />
+              <br /> */}
               <button >enter</button>
               <br />
             </form>
