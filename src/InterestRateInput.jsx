@@ -108,49 +108,6 @@ class InterestRateInput extends React.Component {
                   </>
                 )
               })}
-
-
-
-
-              {/* <label htmlFor="interestRate">Interest Rate</label>
-              <br />
-              <input
-                value={interestRate}
-                onChange={this.handleChange}
-                type="text"
-                autoComplete="off"
-                name="interestRate"
-              />
-              <br /> */}
-
-              {/* <label>Loan Amount</label>
-              <br />
-              <h6>{remainingPayments} payments to pay off</h6>
-              <input
-                value={loanAmount}
-                onChange={this.handleChange}
-                type="text"
-                autoComplete="off"
-                name="loanAmount"
-              />
-              <br /> */}
-
-              {/* <label>Payment</label>
-              <br />
-              <h6>${
-              (loanAmount > 100) 
-              ? (+loanAmount * .01 + (+interestRate * +loanAmount / 12)).toFixed(2)
-              : (+loanAmount + (+interestRate * +loanAmount / 12)).toFixed(2) 
-              } is your minimum due</h6>
-              <br />
-              <input
-                value={payment}
-                onChange={this.handleChange}
-                type="text"
-                autoComplete="off"
-                name="payment"
-              />
-              <br /> */}
               <button >enter</button>
               <br />
             </form>
