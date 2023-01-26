@@ -10,28 +10,9 @@ class InterestRateInput extends React.Component {
     remainingPayments: "",
   };
 
-
-  
   handleChange = ({target: {name, value}}) => {    
     this.setState({[name]: value })
   }
-
-  // calculations = () => {
-  //   const { loanAmount, interestRate, payment, remainingPayments } = this.state
-  //   const interestFee = (interestRate / 12) * loanAmount
-    
-  //   // if (loanAmount <= 100) {
-  //   //   return minimumPayment = parseFloat((loanAmount + interestFee).toFixed(2))
-  //   // }
-  //   const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
-  //   const revisedPayment = +payment - +interestFee
-    
-  //   this.setState({
-  //     loanAmount: parseFloat((loanAmount - +revisedPayment).toFixed(2)), 
-  //     remainingPayments: (loanAmount / (minimumPayment - interestFee)).toFixed(2) 
-  //   })
-  //   return revisedPayment
-  // }
 
   calculations = () => {
     const { loanAmount, interestRate, payment, remainingPayments, minPay } = this.state
@@ -72,8 +53,6 @@ class InterestRateInput extends React.Component {
     const {loanAmount, payment, interestFee, remainingPayments} = this.state
     const minimumPayment = parseFloat((+loanAmount * 0.01).toFixed(2))
     
-    
-
     if (+payment < +minimumPayment && +loanAmount > 100) {
       alert(`you pay more, you pay now! $${minimumPayment} is the minimum required`)
     } else {
@@ -92,25 +71,10 @@ class InterestRateInput extends React.Component {
       };      
     }
     
-    
-
-
-    
-    
-
-  
 
   render() {
     const { interestRate, loanAmount, payment, remainingPayments } = this.state;
-    // const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
-    // let minimumPayment = ''
-    // +loanAmount > 100 
-    //   ? minimumPayment = +loanAmount * .01 + (+interestRate * +loanAmount / 12)
-    //   : minimumPayment = +loanAmount + (+interestRate * +loanAmount / 12)
-    
-
-
-
+   
     return (
       <div className="hero">
         <h2>Debt Calculator</h2>
@@ -159,10 +123,8 @@ class InterestRateInput extends React.Component {
               <button >enter</button>
               <br />
             </form>
-          </div>
-          
+          </div>          
         </div>
-
         <PaymentHistory info={this.state} />
       </div>
     );

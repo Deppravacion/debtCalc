@@ -1,8 +1,7 @@
 import React from "react";
 class PaymentHistory extends React.Component {  
   render() {
-    const {info:{ completedPayments }} = this.props;
-    
+    const {info:{ completedPayments }} = this.props;    
     return (
       <div className="history-wrapper" >
         <p>History of payments</p>
@@ -10,20 +9,16 @@ class PaymentHistory extends React.Component {
           const $paymentsList = document.getElementById("paymentsList");    
           const classes = $paymentsList.classList;
           const result = classes.toggle("invisible");    
-        }}>Hide / Show</button>
- 
+        }}>Hide / Show</button> 
         <ul id="paymentsList" className="dark-bg">
           {completedPayments
             .map(item => (
               <li key={item.id}>{item.text}</li>
             ) )
           }
-        </ul>
-  
+        </ul>  
       </div>
-
     )
   }
 }
-
 export default PaymentHistory;
