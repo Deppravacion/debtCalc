@@ -59,7 +59,7 @@ class InterestRateInput extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const {loanAmount, payment, interestFee, minPay, remainingPayments} = this.state
+    const {loanAmount, payment, minPay,} = this.state
 
     
     if (+payment < +minPay && +loanAmount > 100) {
