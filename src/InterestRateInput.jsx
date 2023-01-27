@@ -8,26 +8,36 @@ class InterestRateInput extends React.Component {
     loanAmount: "",
     payment: "",
     remainingPayments: "",
+    minPay: "",
   };
 
   handleChange = ({target: {name, value}}) => {    
-    this.setState({[name]: value })
+    this.setState({[name]: value})
+    this.minPayFinder() 
+    //***************************************************************************** */
+   
+    //******************************************************************************* */
+  }
+
+  minPayFinder = () => {
+    const { loanAmount, interestRate, minPay } = this.state
+    const interestFee = (interestRate / 100 / 12) * loanAmount 
+    const principal = loanAmount / 100
+    this.setState({ minPay: principal + interestFee})
   }
 
   calculations = () => {
-    const { loanAmount, interestRate , payment, remainingPayments, minPay } = this.state
-    const interestFee = (interestRate / 12) * loanAmount
- 
+    const { loanAmount, interestRate , payment, remainingPayments, minPay } = this.state   
+    const interestFee = parseInt(((interestRate / 100 / 12) * loanAmount).toFixed(2))
+    const principal = loanAmount / 100
 
     if (+loanAmount <= +100) {
-      const minimumPayment = parseFloat((+loanAmount + +interestFee).toFixed(2))
       this.finalPayment()
     } else {
-
-      const minimumPayment = parseFloat((loanAmount * 0.01).toFixed(2))
       const revisedPayment = +payment - +interestFee
       
       this.setState({
+
         loanAmount: parseFloat((+loanAmount - +revisedPayment).toFixed(2)), 
         remainingPayments: (+loanAmount / (+payment - +interestFee)).toFixed(2) 
       })
@@ -37,11 +47,11 @@ class InterestRateInput extends React.Component {
 
   finalPayment = () => {
     const { loanAmount, interestRate, payment } = this.state
-    const interestFee = (+interestRate / 12) * +loanAmount
+    const interestFee = (+interestRate / 12 / 100) * +loanAmount
     const finalPaymentAmount = parseFloat((+loanAmount + +interestFee).toFixed(2))
     console.log(`line 60 ${finalPaymentAmount}`)
     this.setState({
-      loanAmount: parseFloat((+loanAmount - +payment).toFixed(2)), 
+      loanAmount: parseFloat((+loanAmount - +payment - +interestFee).toFixed(2)), 
       remainingPayments: 0
     })
     return finalPaymentAmount
@@ -49,11 +59,11 @@ class InterestRateInput extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const {loanAmount, payment, interestFee, remainingPayments} = this.state
-    const minimumPayment = parseFloat((+loanAmount * 0.01).toFixed(2))
+    const {loanAmount, payment, interestFee, minPay, remainingPayments} = this.state
+
     
-    if (+payment < +minimumPayment && +loanAmount > 100) {
-      alert(`you pay more, you pay now! $${minimumPayment} is the minimum required`)
+    if (+payment < +minPay && +loanAmount > 100) {
+      alert(`you pay more, you pay now! $${minPay} is the minimum required`)
     } else {
       this.calculations()
       const newItem = {
@@ -77,8 +87,7 @@ class InterestRateInput extends React.Component {
     const fields = [
       { label: "Interest Rate", value: interestRate, name: 'interestRate' }, 
       { label: "Loan Amount", value: loanAmount, name: 'loanAmount', subheader: `${remainingPayments} payments to pay off` }, 
-      { label: "Payment", value: payment, name: 'payment', subheader: (+loanAmount > 100) ? (+loanAmount * .01 + (+interestRate * +loanAmount / 12)).toFixed(2) : (+loanAmount + (+interestRate * +loanAmount / 12)).toFixed(2)} , 
-      
+      { label: "Payment", value: payment, name: 'payment', subheader: (+loanAmount > 100) ? (+loanAmount * .01 + (+interestRate / 100 * +loanAmount / 12)).toFixed(2) : (+loanAmount + (+interestRate * +loanAmount / 12)).toFixed(2)},    
     ]
    
     return (
