@@ -17,7 +17,7 @@ class InterestRateInput extends React.Component {
 
   preCalculations = () => {
     const { loanAmount, interestRate, payment } = this.state
-    const interestFee = parseFloat(((interestRate / 1200 ) * loanAmount).toFixed(2))
+    const interestFee = parseFloat(((interestRate / 1200 ) * loanAmount).toFixed(2)) 
     const principal = +loanAmount / 100
     if (loanAmount == 0) this.setState({ remainingPayments: 0})
     if (+loanAmount <= 100 && loanAmount > 0 ) this.setState({ 
@@ -30,7 +30,7 @@ class InterestRateInput extends React.Component {
   }
 
   calculations = () => {
-    const { loanAmount, interestRate , payment, remainingPayments } = this.state   
+    const { loanAmount, interestRate , payment } = this.state   
     const interestFee = parseFloat(((interestRate / 1200 ) * loanAmount).toFixed(2))
     const principal = parseFloat(loanAmount / 100)
     if (+loanAmount <= 100) {
@@ -59,7 +59,6 @@ class InterestRateInput extends React.Component {
       payment: "",
     }), () => this.preCalculations() );
   }
-
 
   handleSubmit = (e) => {
     e.preventDefault()
