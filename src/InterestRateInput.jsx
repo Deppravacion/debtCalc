@@ -10,28 +10,42 @@ class InterestRateInput extends React.Component {
     remainingPayments: "",
     minPay: "",
   };
-
+  
   handleChange = ({target: {name, value}}) => {    
-    this.setState({[name]: value}, () => this.minPayFinder())
+    this.setState({[name]: value}, () => this.preCalculations())
   }
 
-  minPayFinder = () => {
-    const { loanAmount, interestRate } = this.state
-    const interestFee = (+interestRate / 1200) * loanAmount 
+  preCalculations = () => {
+    const { loanAmount, interestRate, payment } = this.state
+    const interestFee = parseFloat(((interestRate / 1200 ) * loanAmount).toFixed(2))
     const principal = +loanAmount / 100
-    if (+loanAmount <= 100) this.setState({ minPay: parseInt(+loanAmount + +principal).toFixed(2) })
-    if (+loanAmount > 100) this.setState({ minPay: parseInt(principal + interestFee).toFixed(2) })
+    if (loanAmount == 0) this.setState({ remainingPayments: 0})
+    if (+loanAmount <= 100 && loanAmount > 0 ) this.setState({ 
+      minPay: parseFloat(+loanAmount + +principal).toFixed(2),
+      remainingPayments: `Final Payment Due` 
+    })
+    if (+loanAmount > 100) this.setState({ 
+      minPay: parseFloat(principal + interestFee).toFixed(2), 
+    })
   }
 
   calculations = () => {
     const { loanAmount, interestRate , payment, remainingPayments } = this.state   
-    const interestFee = parseInt(((interestRate / 1200 ) * loanAmount).toFixed(2))
-    this.setState({
-      loanAmount: parseFloat((loanAmount - +payment + +interestFee).toFixed(2)),
-      remainingPayments: (+loanAmount / (+payment - +interestFee)).toFixed(2) > 0 | 0 
-    })
+    const interestFee = parseFloat(((interestRate / 1200 ) * loanAmount).toFixed(2))
+    const principal = parseFloat(loanAmount / 100)
+    if (+loanAmount <= 100) {
+      this.setState({
+        loanAmount: parseFloat((+loanAmount - +payment + +principal).toFixed(2))
+      })
+    }
+    if (+loanAmount > 100) {
+      this.setState({
+        loanAmount: parseFloat((loanAmount - +payment + +interestFee).toFixed(2)),       
+        remainingPayments: Math.ceil(+loanAmount / (+payment - +interestFee)) 
+      })
+    }
   }
-
+  
   historyLogic = () => {
     const newItem = {
       text: this.state.payment,
@@ -39,22 +53,24 @@ class InterestRateInput extends React.Component {
     };   
     this.setState((state) => ({
       completedPayments:
-        newItem.text != ""
-        ? [...state.completedPayments, newItem]
-        : [...state.completedPayments],
-        payment: "",
-      }), () => this.minPayFinder());
+      newItem.text != ""
+      ? [...state.completedPayments, newItem]
+      : [...state.completedPayments],
+      payment: "",
+    }), () => this.preCalculations() );
   }
+
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { payment, minPay,} = this.state    
+    const { payment, minPay, loanAmount} = this.state    
+    if ( loanAmount == 0 ) this.setState({ remainingPayments: 0})
     if (+payment < +minPay ) {
       return alert(`you must pay more, you pay now! $${minPay} is the minimum required`)
     } 
     this.calculations()
     this.historyLogic()
-    }    
+  }    
 
   render() {
     const { interestRate, loanAmount, payment, remainingPayments, minPay } = this.state;
