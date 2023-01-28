@@ -52,7 +52,8 @@ class InterestRateInput extends React.Component {
     console.log(`line 60 ${finalPaymentAmount}`)
     this.setState({
       loanAmount: parseFloat((+loanAmount - +payment - +interestFee).toFixed(2)), 
-      remainingPayments: 0
+      remainingPayments: 0, 
+      minPay: +loanAmount,
     })
     return finalPaymentAmount
   }
@@ -87,7 +88,7 @@ class InterestRateInput extends React.Component {
     const fields = [
       { label: "Interest Rate", value: interestRate, name: 'interestRate' }, 
       { label: "Loan Amount", value: loanAmount, name: 'loanAmount', subheader: `${remainingPayments} payments to pay off` }, 
-      { label: "Payment", value: payment, name: 'payment', subheader: (+loanAmount > 100) ? (+loanAmount * .01 + (+interestRate / 100 * +loanAmount / 12)).toFixed(2) : (+loanAmount + (+interestRate * +loanAmount / 12)).toFixed(2)},    
+      { label: "Payment", value: payment, name: 'payment', subheader: (+loanAmount > 100) ? (+loanAmount * .01 + (+interestRate / 100 * +loanAmount / 12)).toFixed(2) : (+loanAmount + (+interestRate / 100 * +loanAmount / 12)).toFixed(2)},    
     ]
    
     return (
