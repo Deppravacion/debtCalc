@@ -35,7 +35,8 @@ class InterestRateInput extends React.Component {
     const principal = parseFloat(loanAmount / 100)
     if (+loanAmount <= 100) {
       this.setState({
-        loanAmount: parseFloat((+loanAmount - +payment + +principal).toFixed(2))
+        loanAmount: parseFloat((+loanAmount - +payment + +principal).toFixed(2)),
+        minPay: (loanAmount + principal - payment).toFixed(2)
       })
     }
     if (+loanAmount > 100) {
