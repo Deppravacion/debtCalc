@@ -31,7 +31,9 @@ button {
 
 li {
   list-style: none;
-  background-color: #115e11;
+  background-color: #DBAF3F;
+  color: #5C383E;
+  font-weight: 600;
 }
 
 form {
@@ -44,18 +46,18 @@ input {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #0a0a2e40;
+  background-color: #4976AE;
   color: white;
   letter-spacing: 2.2px;
   font-size: 16px;
   text-align: center;
-  border: 2px solid #b1243152;
+  border: 2px solid #DBAF3F;
 }
 
 
 
 .dark-bg {
- background-color: rgb(42, 42, 42);
+ background-color: #225A92;
 }
 
 .hero h2 {
@@ -63,7 +65,7 @@ input {
 }
 
 .form-wrapper, .calculations-wrapper {
-  border-top: 6px solid #0e8177;
+  border-top: 6px solid #4976AE;
   margin: 8px;
   border-radius: 10px;
 }
