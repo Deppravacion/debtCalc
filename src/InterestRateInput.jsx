@@ -16,7 +16,7 @@ class InterestRateInput extends React.Component {
   }
 
   preCalculations = () => {
-    const { loanAmount, interestRate, payment } = this.state
+    const { loanAmount, interestRate } = this.state
     const interestFee = parseFloat(((interestRate / 1200 ) * loanAmount).toFixed(2)) 
     const principal = +loanAmount / 100
     if (loanAmount == 0) this.setState({ remainingPayments: 0})
